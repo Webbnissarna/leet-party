@@ -76,8 +76,7 @@ export default function Index() {
         }}
       >
         <Heading as={"h1"}>Webbnissarna</Heading>
-        <Text sx={{ fontWeight: "title" }}>1337 stats 2020-2021</Text>
-        <Text sx={{ fontSize: "headline" }}>🎉</Text>
+        <Text sx={{ fontWeight: "title" }}>1337 stats 2020-2021 🎉</Text>
 
         <Section
           title="Individual"
@@ -124,16 +123,16 @@ export default function Index() {
 
             <Text>
               On average <Bold>{leetData.averageQuickest.sender}</Bold> was the
-              quickest 🥈️️, reacting about{" "}
-              <Bold>{msToSec(leetData.averageQuickest.value)} sec</Bold> before
-              everyone else
+              quickest, reacting about{" "}
+              <Bold>{msToSec(leetData.averageQuickest.value)} sec</Bold> 🥇
+              before everyone else
             </Text>
 
             <Text>
               <Bold>{leetData.closest.sender}</Bold> cut it close once, reacting
               just{" "}
               <Bold>{msToSec(60 * 1000 - leetData.closest.value)} sec</Bold>{" "}
-              before leet ended
+              before leet ended 🏃‍♂️!
             </Text>
 
             <Text>

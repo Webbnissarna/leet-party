@@ -55,7 +55,7 @@ function getTextArcPosition(
   const offset = scale * 0.5;
   const arcTime = -0.25 + sliceArcStart + sliceArcLength / 2;
   const [x, y] = getCoordinatesForPercent(arcTime);
-  return [x * 0.5 * offset, y * 0.5 * offset];
+  return [x * 0.6 * offset, y * 0.6 * offset];
 }
 
 export default function PieChart({ input }: PieChartProps): JSX.Element {
@@ -89,8 +89,8 @@ export default function PieChart({ input }: PieChartProps): JSX.Element {
       <Box
         sx={{
           position: "relative",
-          width: "720px",
-          height: "720px",
+          width: "min(90vw, 720px)",
+          height: "min(90vw, 720px)",
           borderRadius: "50%",
           boxShadow: "main",
         }}
@@ -110,7 +110,7 @@ export default function PieChart({ input }: PieChartProps): JSX.Element {
                 x={slice.textArcPosition[0]}
                 y={slice.textArcPosition[1]}
                 style={{
-                  fontSize: 28,
+                  fontSize: 32,
                 }}
                 textAnchor="middle"
                 dominantBaseline="middle"
@@ -119,8 +119,8 @@ export default function PieChart({ input }: PieChartProps): JSX.Element {
               </text>
               <text
                 x={slice.textArcPosition[0]}
-                y={slice.textArcPosition[1] + 28}
-                style={{ fontSize: 18 }}
+                y={slice.textArcPosition[1] + 32}
+                style={{ fontSize: 24 }}
                 textAnchor="middle"
                 dominantBaseline="middle"
               >

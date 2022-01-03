@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Text } from "@theme-ui/components";
 import React from "react";
+import { CustomThemeType } from "../utils/theme";
 
 export interface BarInput {
   titles: string[];
@@ -20,11 +21,18 @@ export default function BarChart({
     0
   );
 
+  const maxWidthPerBarCell = Math.floor(100 / input.length);
+
   return (
     <Grid
       sx={{
         gap: "md",
-        gridTemplateColumns: `repeat(${input.length}, 100px)`,
+        gridTemplateColumns: (theme: CustomThemeType) =>
+          `repeat(${input.length}, min(calc(${maxWidthPerBarCell}vw - ${
+            theme.space.md * 1.2
+          }px), 100px))`,
+        maxWidth: "100vw",
+        padding: "sm",
       }}
     >
       {input.map((bar) => (
@@ -60,7 +68,13 @@ export default function BarChart({
             alignItems: "center",
           }}
         >
-          <Text>{bar.titles.join("+")}</Text>
+          <Text
+            sx={{
+              fontSize: "sm",
+            }}
+          >
+            {bar.titles.join("+")}
+          </Text>
         </Flex>
       ))}
     </Grid>

@@ -17,7 +17,11 @@ export default function Section({
       sx={{
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
         gap: "md",
+        maxWidth: "100vw",
+        padding: "sm",
       }}
     >
       <Heading>{title}</Heading>
