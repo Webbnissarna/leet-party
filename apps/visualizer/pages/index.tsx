@@ -8,6 +8,14 @@ import PieChart, { PieSliceInput } from "../components/PieChart";
 import BarChart, { BarInput } from "../components/BarChart";
 const leetData: LeetOutput = rawLeetData;
 
+function Bold({ children }): JSX.Element {
+  return <Text sx={{ fontWeight: "title" }}>{children}</Text>;
+}
+
+function msToSec(ms: number): number {
+  return Math.round(ms / 10) / 100;
+}
+
 function timestampToDate(timestamp: number): string {
   const date = new Date(timestamp);
   const y = date.getFullYear();
@@ -93,60 +101,46 @@ export default function Index() {
         </Section>
 
         <Section title="Special Times">
-          <Flex>
-            <Text>A total of&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>{leetData.totalDays} </Text>
-            <Text>&nbsp;had at least one 🎉, with a sum of&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>{leetData.total} 🎉</Text>
-          </Flex>
+          <Flex sx={{ flexDirection: "column", gap: "md" }}>
+            <Text>
+              A total of <Bold>{leetData.totalDays} days</Bold> had at least one
+              🎉, with a sum of {leetData.total} total 🎉
+            </Text>
 
-          <Flex>
-            <Text>The first leet 🎉 was done by&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>{leetData.first.sender} </Text>
-            <Text>&nbsp;on&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {timestampToDate(leetData.first.timestamp)}
+            <Text>
+              The first leet 🎉 was done by <Bold>{leetData.first.sender}</Bold>{" "}
+              on <Bold>{timestampToDate(leetData.first.timestamp)}</Bold>
             </Text>
-          </Flex>
 
-          <Flex>
-            <Text>The first group leet 🎉 was born on&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {timestampToDate(leetData.firstGroup.timestamp)}
+            <Text>
+              The first group leet 🎉 was born on{" "}
+              <Bold>{timestampToDate(leetData.firstGroup.timestamp)}</Bold>
             </Text>
-          </Flex>
 
-          <Flex>
-            <Text>On average&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {leetData.averageQuickest.sender}
+            <Text>
+              There were a total of <Bold>{leetData.missed} days</Bold> when
+              leet was forgotten 😞
             </Text>
-            <Text>&nbsp;was the quickest 🥈️️, reacting roughly&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {Math.round(leetData.averageQuickest.value)} ms
-            </Text>
-            <Text>&nbsp;before everyone else</Text>
-          </Flex>
 
-          <Flex>
-            <Text sx={{ fontWeight: "title" }}>{leetData.closest.sender}</Text>
-            <Text>&nbsp;cut it close once, reacting just&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {Math.round(leetData.closest.value)} ms
+            <Text>
+              On average <Bold>{leetData.averageQuickest.sender}</Bold> was the
+              quickest 🥈️️, reacting about{" "}
+              <Bold>{msToSec(leetData.averageQuickest.value)} sec</Bold> before
+              everyone else
             </Text>
-            <Text>&nbsp;before leet ended 🏆</Text>
-          </Flex>
 
-          <Flex>
-            <Text>Longest streak 🐍 is held by&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {leetData.longestStreak.sender}
+            <Text>
+              <Bold>{leetData.closest.sender}</Bold> cut it close once, reacting
+              just{" "}
+              <Bold>{msToSec(60 * 1000 - leetData.closest.value)} sec</Bold>{" "}
+              before leet ended
             </Text>
-            <Text>&nbsp;at&nbsp;</Text>
-            <Text sx={{ fontWeight: "title" }}>
-              {leetData.longestStreak.value} days
+
+            <Text>
+              Longest streak 🐍 is held by{" "}
+              <Bold>{leetData.longestStreak.sender}</Bold> at{" "}
+              <Bold>{leetData.longestStreak.value} days</Bold> in a row!
             </Text>
-            <Text>&nbsp;in a row!</Text>
           </Flex>
         </Section>
 
