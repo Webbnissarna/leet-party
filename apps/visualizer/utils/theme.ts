@@ -8,10 +8,11 @@ const theme = makeTheme({
     heading: "'Raleway', sans-serif;",
   },
   fontSizes: {
+    sm: 14,
     body: 18,
     extra: 24,
-    title: 48,
-    headline: 96,
+    title: "min(8vw, 48px)",
+    headline: "min(12vw, 96px)",
   },
   fontWeights: {
     body: 300,
@@ -44,29 +45,15 @@ const theme = makeTheme({
 
       h1: { fontFamily: "heading", fontWeight: "title", fontSize: "headline" },
       h2: { fontFamily: "heading", fontWeight: "title", fontSize: "title" },
+
+      a: {
+        textDecoration: "none",
+        fontSize: "sm",
+        color: "body",
+      },
     },
   },
 });
-
-export default theme;
-
-export type CustomThemeType = typeof theme;
-
-export const senderColorMap = {
-  "André Åström": "#8d23e0",
-  //"André Åström": "#d3aaf3",
-
-  "Henrik Norrman": "#34781f",
-  //"Henrik Norrman": "#bceaae",
-
-  "Kenth Ljung": "#98f9ff",
-  //"Kenth Ljung": "#c2fbff",
-
-  "André Åström,Henrik Norrman": "#4a83ff",
-  "André Åström,Kenth Ljung": "#ff7dcd",
-  "Henrik Norrman,Kenth Ljung": "#d4ff7d",
-  "André Åström,Henrik Norrman,Kenth Ljung": "#ffc663",
-};
 
 export function mixColors(colors: string[]): string {
   const split = colors.map((color) => [
@@ -88,3 +75,25 @@ export function mixColors(colors: string[]): string {
 
   return `#${hex.join("")}`;
 }
+
+export default theme;
+
+export type CustomThemeType = typeof theme;
+
+export const senderColorMap = {
+  "André Åström": "#8d23e0",
+  //"André Åström": "#d3aaf3",
+
+  "Henrik Norrman": "#34781f",
+  //"Henrik Norrman": "#bceaae",
+
+  "Kenth Ljung": "#98f9ff",
+  //"Kenth Ljung": "#c2fbff",
+
+  "Gabriel Brattgård": "#d5ff8c",
+
+  "André Åström,Henrik Norrman": "#4a83ff",
+  "André Åström,Kenth Ljung": "#ff7dcd",
+  "Henrik Norrman,Kenth Ljung": "#d4ff7d",
+  "André Åström,Henrik Norrman,Kenth Ljung": "#ffc663",
+};
