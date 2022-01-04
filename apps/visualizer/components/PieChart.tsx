@@ -1,3 +1,4 @@
+import { keyframes } from "@emotion/react";
 import { Box } from "theme-ui";
 import { senderColorMap } from "../utils/theme";
 
@@ -84,6 +85,21 @@ export default function PieChart({ input }: PieChartProps): JSX.Element {
     { count: 0, slices: [] }
   ).slices;
 
+  const fadeInAnim = keyframes({
+    "0%": {
+      transform: "scale(0) rotate(-90deg)",
+      opacity: 0,
+    },
+    "80%": {
+      transform: "scale(1.1) rotate(10deg)",
+      opacity: 1,
+    },
+    "100%": {
+      transform: "scale(1) rotate(0)",
+      opacity: 1,
+    },
+  });
+
   return (
     <Box>
       <Box
@@ -93,6 +109,10 @@ export default function PieChart({ input }: PieChartProps): JSX.Element {
           height: "min(90vw, 720px)",
           borderRadius: "50%",
           boxShadow: "main",
+          animationName: fadeInAnim.toString(),
+          animationDuration: "1s",
+          animationIterationCount: "1",
+          animationTimingFunction: "ease-in-out",
         }}
       >
         <svg width={"100%"} height={"100%"}>
