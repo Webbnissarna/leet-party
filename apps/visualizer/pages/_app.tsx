@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "theme-ui";
 import theme from "../utils/theme";
+import { Flex } from "@theme-ui/components";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +14,15 @@ function App({ Component, pageProps }: AppProps) {
         ></meta>
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Flex
+          sx={{
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Component {...pageProps} />
+        </Flex>
       </ThemeProvider>
     </>
   );

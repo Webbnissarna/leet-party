@@ -59,7 +59,7 @@ export default function Index() {
   return (
     <Box
       sx={{
-        width: "100vw",
+        width: "100%",
         margin: 0,
         paddingX: 0,
         paddingY: "lg",
