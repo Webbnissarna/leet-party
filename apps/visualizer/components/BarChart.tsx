@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Text } from "@theme-ui/components";
-import React from "react";
+import React, { useRef } from "react";
+import { useIntersectionValue } from "../hooks/useIntersectionValue";
 import { CustomThemeType } from "../utils/theme";
 
 export interface BarInput {
@@ -12,10 +13,14 @@ interface BarChartProps {
   input: BarInput[];
   maxBarHeight: number;
 }
+
 export default function BarChart({
   input,
   maxBarHeight,
 }: BarChartProps): JSX.Element {
+  const observableRef = useRef(null);
+  const isInView = useIntersectionValue(observableRef, true, false, true);
+
   const maxValue = input.reduce<number>(
     (max, bar) => Math.max(max, bar.count),
     0
@@ -25,6 +30,7 @@ export default function BarChart({
 
   return (
     <Grid
+      ref={observableRef}
       sx={{
         gap: "md",
         gridTemplateColumns: (theme: CustomThemeType) =>
@@ -43,6 +49,7 @@ export default function BarChart({
             alignItems: "center",
             justifyContent: "flex-start",
             gap: "sm",
+            height: maxBarHeight,
           }}
         >
           <Text sx={{ flexGrow: 1, display: "flex", alignItems: "flex-end" }}>
@@ -50,11 +57,16 @@ export default function BarChart({
           </Text>
           <Box
             sx={{
-              backgroundColor: bar.color,
-              height: (bar.count / maxValue) * maxBarHeight,
+              flexDirection: "column",
+              justifyContent: "flex-end",
               width: "70%",
-              boxShadow: "main",
               borderRadius: "sm",
+              height: `${Math.round(
+                (bar.count / maxValue) * 100 * (isInView ? 1 : 0)
+              )}%`,
+              transition: "height 1s ease-out",
+              boxShadow: "main",
+              backgroundColor: bar.color,
             }}
           />
         </Flex>

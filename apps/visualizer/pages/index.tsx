@@ -89,14 +89,14 @@ export default function Index() {
           title="Combinations"
           subtitle="Number of times each combination of participants occurred"
         >
-          <BarChart input={combinationInputs} maxBarHeight={100} />
+          <BarChart input={combinationInputs} maxBarHeight={150} />
         </Section>
 
         <Section
           title="Imposters"
           subtitle="Number of times someone tried to fool us with 13:38"
         >
-          <BarChart input={imposters} maxBarHeight={100} />
+          <BarChart input={imposters} maxBarHeight={150} />
         </Section>
 
         <Section title="Special Times">
