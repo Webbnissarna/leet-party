@@ -2,11 +2,9 @@ import { Box, Flex, Heading, Text, Link } from "@theme-ui/components";
 import Section from "../components/Section";
 import { CustomThemeType, senderColorMap } from "../utils/theme";
 
-import rawLeetData from "../data/output.json";
 import { Output as LeetOutput } from "../types/Types";
 import PieChart, { PieSliceInput } from "../components/PieChart";
 import BarChart, { BarInput } from "../components/BarChart";
-const leetData: LeetOutput = rawLeetData;
 
 function Bold({ children }): JSX.Element {
   return <Text sx={{ fontWeight: "title" }}>{children}</Text>;
@@ -24,7 +22,13 @@ function timestampToDate(timestamp: number): string {
   return `${y}-${m}-${d}`;
 }
 
-export default function Index() {
+interface IndexProps {
+  leetData: LeetOutput;
+}
+
+export default function Index({ leetData }: IndexProps) {
+  console.log(leetData);
+
   const individualPieSlices = Object.entries(leetData.individual)
     .map<PieSliceInput>(([title, count]) => ({ title, count }))
     .sort((a, b) => b.count - a.count);
@@ -149,4 +153,13 @@ export default function Index() {
       </Flex>
     </Box>
   );
+}
+
+export function getStaticProps(): { props: IndexProps } {
+  const inputData = Buffer.from(process.env.LEET_INPUT, "base64").toString(
+    "utf-8"
+  );
+  return {
+    props: { leetData: JSON.parse(inputData) },
+  };
 }

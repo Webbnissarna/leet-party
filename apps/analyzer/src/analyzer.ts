@@ -449,5 +449,10 @@ void (async () => {
 
   const outPath = path.join(DATA_OUTPUT_DIR, "output.json");
   await fs.writeFile(outPath, JSON.stringify(output, null, 2));
-  console.log("output done", outPath);
+
+  const base64Output = Buffer.from(JSON.stringify(output)).toString("base64");
+  const base64OutPath = path.join(DATA_OUTPUT_DIR, "output.base64.txt");
+  await fs.writeFile(base64OutPath, base64Output);
+
+  console.log("output done", outPath, base64OutPath);
 })();
