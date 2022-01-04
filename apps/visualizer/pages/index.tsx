@@ -133,10 +133,16 @@ export default function Index({ leetData }: IndexProps) {
             </Text>
 
             <Text>
+              However the quickest ever reaction goes to{" "}
+              <Bold>{leetData.quickest.sender}</Bold> clocking in at just{" "}
+              <Bold>{msToSec(leetData.quickest.value)} sec</Bold> 🏃‍♂️!
+            </Text>
+
+            <Text>
               <Bold>{leetData.closest.sender}</Bold> cut it close once, reacting
               just{" "}
               <Bold>{msToSec(60 * 1000 - leetData.closest.value)} sec</Bold>{" "}
-              before leet ended 🏃‍♂️!
+              before leet ended 🏆!
             </Text>
 
             <Text>
